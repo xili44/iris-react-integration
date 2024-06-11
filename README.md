@@ -40,7 +40,7 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 - On the Management Portal navigate to: `System Administration -> Security -> Application -> Web Application -> Create New Web Application`.
 
 - Fill in the form as shown below
-![management portal](public\management_portal.png)
+![management portal](/public\management_portal.png)
 
 - The APIs defined in `Prototype/DB/RESTServices.cls` will be available at `http://localhost:52773/api/prototype/*`
   - e.g. For example, the route `/patient` will be available at `http://localhost:52773/api/prototype/patients`
@@ -56,47 +56,41 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 
 - Add the property inside tour dispatcher class
   
-- ```ObjectScript
-
+  - ```ObjectScript
     Parameter HandleCorsRequest = 1;
-
     ```
 
 - Define the `OnPreDispatch` method inside your dispatcher class to set response headers
 
-- ```ObjectScript
-
-    ClassMethod OnPreDispatch() As %Status
-    {
-        Do %response.SetHeader("Access-Control-Allow-Credentials","true")
-        Do %response.SetHeader("Access-Control-Allow-Methods","GET, PUT, POST, DELETE, OPTIONS")
-        Do %response.SetHeader("Access-Control-Max-Age","10000")
-        Do %response.SetHeader("Access-Control-Allow-Headers","Content-Type, Authorization, Accept-Language, X-Requested-With")
-        quit $$$OK
-    }
-
+  - ```ObjectScript
+        ClassMethod OnPreDispatch() As %Status
+        {
+            Do %response.SetHeader("Access-Control-Allow-Credentials","true")
+            Do %response.SetHeader("Access-Control-Allow-Methods","GET, PUT, POST, DELETE, OPTIONS")
+            Do %response.SetHeader("Access-Control-Max-Age","10000")
+            Do %response.SetHeader("Access-Control-Allow-Headers","Content-Type, Authorization, Accept-Language, X-Requested-With")
+            quit $$$OK
+        }
     ```
 
 #### Use Next.js proxy (Frontend)
 
 - In your `next.config.mjs` file, add in the rewrite function
 
-- ```javascript
+  - ```javascript
+        /** @type {import('next').NextConfig} */
+        const nextConfig = {
+            async rewrites() {
+                return [
+                    {
+                        source: '/prototype/:path',
+                        destination: 'http://localhost:52773/api/prototype/:path'
+                    }
+                ]
+            }
+        };
 
-    /** @type {import('next').NextConfig} */
-    const nextConfig = {
-        async rewrites() {
-            return [
-                {
-                    source: '/prototype/:path',
-                    destination: 'http://localhost:52773/api/prototype/:path'
-                }
-            ]
-        }
-    };
-
-    export default nextConfig;
-
+        export default nextConfig;
     ```
 
 ### Access REST API
