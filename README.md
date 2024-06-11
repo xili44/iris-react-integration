@@ -58,6 +58,7 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 ![management portal](/public/NavigatingManagementPortal.png)
 
 - Enter the path and name of import file, select the namespace and schema to import to and click `Finish`.
+![wizard](/public/Wizard.png)
 
 ## Integration
 
