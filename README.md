@@ -54,7 +54,10 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 
 #### Import the Data into IRIS
 
-- On the Management Portal navigate to: `System Explorer -> SQL -> Go`.
+- On the Management Portal navigate to: `System Explorer -> SQL -> Go -> Wizards -> Data Import`.
+![management portal](/public/NavigatingManagementPortal.png)
+
+- Enter the path and name of import file, select the namespace and schema to import to and click `Finish`.
 
 ## Integration
 
