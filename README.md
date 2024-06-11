@@ -97,7 +97,7 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 
     export default nextConfig;
 
-```
+    ```
 
 ### Access REST API
 
