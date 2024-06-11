@@ -46,6 +46,16 @@ Download the `Prototype` folder and import the folder on the Management Portal i
   - e.g. For example, the route `/patient` will be available at `http://localhost:52773/api/prototype/patients`
   - ![rest api](/public/restservices.png)
 
+### Importing Data
+
+#### Downloading sample data
+
+- Download the PatientData.csv file from public
+
+#### Import the Data into IRIS
+
+- On the Management Portal navigate to: `System Explorer -> SQL -> Go`.
+
 ## Integration
 
 ### Handling CORS
