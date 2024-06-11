@@ -40,7 +40,7 @@ Download the `Prototype` folder and import the folder on the Management Portal i
 - On the Management Portal navigate to: `System Administration -> Security -> Application -> Web Application -> Create New Web Application`.
 
 - Fill in the form as shown below
-![management portal](/public\management_portal.png)
+![management portal](/public/management_portal.png)
 
 - The APIs defined in `Prototype/DB/RESTServices.cls` will be available at `http://localhost:52773/api/prototype/*`
   - e.g. For example, the route `/patient` will be available at `http://localhost:52773/api/prototype/patients`
