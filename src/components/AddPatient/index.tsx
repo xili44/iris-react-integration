@@ -1,34 +1,26 @@
 import React, { useState } from "react";
 import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
 import dayjs from "dayjs";
-import base64 from "base-64";
-
+import authorization from "../../constants/auth";
 type AddPatientPropsType = {
-  patientList: IPatient[];
-  setPatientList: (patients: IPatient[]) => void;
+  getPatientData: () => Promise<void>;
 };
-const AddPatient: React.FC<AddPatientPropsType> = ({
-  patientList,
-  setPatientList,
-}) => {
+const AddPatient: React.FC<AddPatientPropsType> = ({ getPatientData }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleSubmitForm = async (values: any) => {
-    let headers = new Headers();
-    const username = "_system";
-    const password = "sys";
     values.DOB = dayjs(values.DOB).format("YYYY-MM-DD");
-    headers.set(
-      "Authorization",
-      "Basic " + base64.encode(username + ":" + password)
-    );
     await (
       await fetch("http://localhost:52773/api/prototype/patient", {
         method: "POST",
         body: JSON.stringify(values),
-        headers: headers,
+        headers: {
+          Authorization: authorization,
+          "Content-Type": "application/json",
+        },
       })
     ).json();
-    window.location.reload();
+    setIsOpen(false);
+    getPatientData();
   };
   const formItemLayout = {
     labelCol: {
